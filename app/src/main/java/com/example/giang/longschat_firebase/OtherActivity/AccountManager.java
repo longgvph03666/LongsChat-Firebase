@@ -157,6 +157,7 @@ public class AccountManager extends AppCompatActivity {
     }
 
     public void logout(){
+        mFirebaseAdapter.offline();
         SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         mSharedPreferences.edit().clear().commit();
 

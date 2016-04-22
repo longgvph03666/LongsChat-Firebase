@@ -11,6 +11,7 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <service android:name="com.example.giang.longschat_firebase.Other.OnClearFromRecentService" android:stopWithTask="false" />
         <activity
             android:name=".OtherActivity.LoginActivity"
             android:windowSoftInputMode="stateHidden">
