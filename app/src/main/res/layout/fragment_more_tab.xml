@@ -1,0 +1,60 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/backgroundColor"
+    tools:context="com.example.giang.longschat_firebase.Tabs.MoreTab">
+
+    <!-- TODO: Update blank fragment layout -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:id="@+id/row_user"
+            android:layout_width="match_parent"
+            android:layout_height="65dp"
+            android:orientation="horizontal"
+            android:background="@color/white">
+            <ImageView
+                android:layout_width="65dp"
+                android:layout_height="match_parent"
+                android:src="@drawable/ic_person_black"
+                android:padding="10dp"
+                style=""/>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:paddingLeft="10dp"
+                android:id="@+id/ll_userInfo">
+                <TextView
+                    android:id="@+id/mt_tvUserName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tên"
+                    android:layout_marginTop="10dp"
+                    android:textSize="20sp"/>
+                <TextView
+                    android:id="@+id/mt_tvUserEmail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    android:textColor="@color/lightBlue"
+                    android:layout_marginTop="5dp"/>
+            </LinearLayout>
+        </LinearLayout>
+
+        <ListView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:id="@+id/more_listItem"
+            android:layout_marginTop="12dp"></ListView>
+
+    </LinearLayout>
+
+
+
+</FrameLayout>

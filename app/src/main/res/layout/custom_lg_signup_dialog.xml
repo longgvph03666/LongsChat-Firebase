@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:padding="10dp"
+    android:layout_height="match_parent">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:text="Sign Up"
+        android:gravity="center"
+        android:textStyle="bold"
+        android:textSize="30sp"/>
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Email"
+        android:inputType="textEmailAddress"
+        android:id="@+id/etEmail_dialog_sign"
+        android:paddingLeft="10dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Mật khẩu"
+        android:inputType="textPassword"
+        android:id="@+id/etPass_dialog_sign"
+        android:paddingLeft="10dp"
+        />
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:hint="Nhập lại mật khẩu"
+        android:inputType="textPassword"
+        android:id="@+id/etPassConfirm_dialog_sign"
+        android:paddingLeft="10dp"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="5dp">
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Đăng ký"
+            android:id="@+id/btSign_dialog_sign"
+            android:layout_weight="1"
+            android:textStyle="bold"
+            />
+
+        <Button
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Làm lại"
+            android:id="@+id/btReset_dialog_sign"
+            android:textStyle="bold"/>
+    </LinearLayout>
+</LinearLayout>
