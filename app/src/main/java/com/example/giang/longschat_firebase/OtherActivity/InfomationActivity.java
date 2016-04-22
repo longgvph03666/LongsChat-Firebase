@@ -1,5 +1,6 @@
 package com.example.giang.longschat_firebase.OtherActivity;
 
+import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
@@ -18,12 +19,14 @@ public class InfomationActivity extends AppCompatActivity {
     EditText etName, etAge, etAddress, etPhoneNumber;
     RadioButton rdMale, rdFemale;
     Button btUpdate;
+    public static Activity mActivity;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_infomation);
         setTitle("Cập nhật thông tin");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        mActivity = this;
 
         mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         setViews();

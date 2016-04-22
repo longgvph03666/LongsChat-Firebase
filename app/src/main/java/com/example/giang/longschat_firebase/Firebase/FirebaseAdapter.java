@@ -6,6 +6,9 @@ import android.content.SharedPreferences;
 import android.widget.Toast;
 
 import com.example.giang.longschat_firebase.MainInterface;
+import com.example.giang.longschat_firebase.OtherActivity.ChangeEmail;
+import com.example.giang.longschat_firebase.OtherActivity.ChangePassword;
+import com.example.giang.longschat_firebase.OtherActivity.InfomationActivity;
 import com.example.giang.longschat_firebase.OtherActivity.LoginActivity;
 import com.firebase.client.AuthData;
 import com.firebase.client.ChildEventListener;
@@ -25,6 +28,7 @@ public class FirebaseAdapter {
     public static boolean isLogin;
     Firebase mFirebase;
     SharedPreferences mSharedPreferences;
+    SharedPreferences.Editor editor = LoginActivity.mSharedPreferences.edit();;
 
     public FirebaseAdapter(Context context) {
         this.mContext = context;
@@ -42,13 +46,15 @@ public class FirebaseAdapter {
                 isLogin = true;
                 Toast.makeText(mContext, "Đăng nhập thành công !", Toast.LENGTH_SHORT).show();
                 Intent it = new Intent(mContext, MainInterface.class);
+                it.addFlags(Intent.FLAG_ACTIVITY_NO_HISTORY);
                 mContext.startActivity(it);
-                SharedPreferences.Editor editor = LoginActivity.mSharedPreferences.edit();
-                editor.putString("email", LoginActivity.etEmail.getText().toString());
-                editor.putString("id", authData.getUid());
+                editor.putString("user_email", LoginActivity.etEmail.getText().toString());
+                editor.putString("user_id", authData.getUid());
+                editor.putString("user_password", LoginActivity.etPass.getText().toString());
                 editor.commit();
                 getInfomation();
                 LoginActivity.mDialog.dismiss();
+                LoginActivity.mActivity.finish();
             }
             @Override
             public void onAuthenticationError(FirebaseError firebaseError) {
@@ -99,7 +105,7 @@ public class FirebaseAdapter {
             public void onChildAdded(DataSnapshot dataSnapshot, String s) {
                 Map<String, String> value = (Map<String, String>) dataSnapshot.getValue();
                 // dataSnapshot.getKey()
-               if(dataSnapshot.getKey().equals(mSharedPreferences.getString("id", ""))){
+               if(dataSnapshot.getKey().equals(mSharedPreferences.getString("user_id", ""))){
                    SharedPreferences.Editor editor = LoginActivity.mSharedPreferences.edit();
                    editor.putString("user_name", value.get("name"));
                    editor.putString("user_age", String.valueOf(value.get("age")));
@@ -143,10 +149,66 @@ public class FirebaseAdapter {
         user.put("phoneNumber", mPhone);
         user.put("sex", mSex);
 
-        mFirebase.child("user").child(mSharedPreferences.getString("id", "")).setValue(user);
+        mFirebase.child("user").child(mSharedPreferences.getString("user_id", "")).setValue(user);
+        Toast.makeText(mContext, "Đã cập nhật thông tin !", Toast.LENGTH_SHORT).show();
+        InfomationActivity.mActivity.finish();
+    }
+
+    public void changeEmail(String mOldEmail, String mPassword, final String mNewEmail){
+        mFirebase.changeEmail(mOldEmail, mPassword, mNewEmail, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(mContext, "Thay đổi thành công !", Toast.LENGTH_SHORT).show();
+                editor.putString("user_email", mNewEmail);
+                editor.commit();
+                ChangeEmail.mActivity.finish();
+            }
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                Toast.makeText(mContext, "Thất bại !!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void changePassword(String email, String oldPass, final String newPass){
+        mFirebase.changePassword(email, oldPass, newPass, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(mContext, "Thay đổi thành công !", Toast.LENGTH_SHORT).show();
+                editor.putString("user_password", newPass);
+                editor.commit();
+                ChangePassword.mActivity.finish();
+            }
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                Toast.makeText(mContext, "Thất bại !!!", Toast.LENGTH_SHORT).show();
+            }
+        });
+    }
+
+    public void deleteUser(String email, String password){
+        mFirebase.removeUser(email, password, new Firebase.ResultHandler() {
+            @Override
+            public void onSuccess() {
+                Toast.makeText(mContext, "Đã xóa !!!", Toast.LENGTH_SHORT).show();
+            }
+            @Override
+            public void onError(FirebaseError firebaseError) {
+                Toast.makeText(mContext, "Thất bại !!!", Toast.LENGTH_SHORT).show();
+            }
+        });
     }
 
 
+    public void online(){
+        mSharedPreferences = mContext.getSharedPreferences("user", Context.MODE_PRIVATE);
+        mFirebase.child("online").child(mSharedPreferences.getString("user_id", "")).setValue("true");
+    }
 
+
+    public void offline(){
+        mSharedPreferences = mContext.getSharedPreferences("user", Context.MODE_PRIVATE);
+        mFirebase.child("online").child(mSharedPreferences.getString("user_id", "")).setValue("false");
+    }
 
 }

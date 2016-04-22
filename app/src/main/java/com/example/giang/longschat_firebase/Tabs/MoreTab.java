@@ -98,13 +98,13 @@ public class MoreTab extends Fragment {
         tvEmail = (TextView) v.findViewById(R.id.mt_tvUserEmail);
 
         tvName.setText(mSharedPreferences.getString("user_name", ""));
-        tvEmail.setText(mSharedPreferences.getString("email", ""));
+        tvEmail.setText(mSharedPreferences.getString("user_email", ""));
     }
 
     @Override
     public void onResume() {
         tvName.setText(mSharedPreferences.getString("user_name", ""));
-        tvEmail.setText(mSharedPreferences.getString("email", ""));
+        tvEmail.setText(mSharedPreferences.getString("user_email", ""));
         super.onResume();
     }
 }

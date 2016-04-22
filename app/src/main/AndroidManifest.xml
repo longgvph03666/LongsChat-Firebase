@@ -25,7 +25,10 @@
             android:name=".OtherActivity.InfomationActivity"
             android:windowSoftInputMode="stateHidden" />
         <activity android:name=".OtherActivity.AccountManager" />
-        <activity android:name=".OtherActivity.ChangeEmail"></activity>
+        <activity android:name=".OtherActivity.ChangeEmail"
+            android:windowSoftInputMode="stateHidden"/>
+        <activity android:name=".OtherActivity.ChangePassword"
+            android:windowSoftInputMode="stateHidden"></activity>
     </application>
 
 </manifest>

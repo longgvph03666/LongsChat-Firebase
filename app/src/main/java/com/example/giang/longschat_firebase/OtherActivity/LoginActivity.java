@@ -262,11 +262,9 @@ public class LoginActivity extends AppCompatActivity {
 
     public void direct(){
         mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
-        if(!mSharedPreferences.getString("email", "").equals("")){
+        if(!mSharedPreferences.getString("user_email", "").equals("")){
             Intent it = new Intent(LoginActivity.this, MainInterface.class);
             startActivity(it);
         }
     }
-
-
 }

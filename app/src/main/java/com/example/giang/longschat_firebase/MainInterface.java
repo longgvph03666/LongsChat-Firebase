@@ -6,6 +6,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.giang.longschat_firebase.Firebase.FirebaseAdapter;
+import com.example.giang.longschat_firebase.OtherActivity.LoginActivity;
 import com.example.giang.longschat_firebase.SlidingTab.SlidingTabLayout;
 import com.example.giang.longschat_firebase.SlidingTab.TabAdapter;
 
@@ -34,9 +35,20 @@ public class MainInterface extends AppCompatActivity {
 
         mFirebaseAdapter = new FirebaseAdapter(getApplicationContext());
         mFirebaseAdapter.start();
+        mFirebaseAdapter.online();
         mFirebaseAdapter.getInfomation();
+    }
+
+    @Override
+    protected void onDestroy() {
+        mFirebaseAdapter.offline();
+        super.onDestroy();
 
     }
 
-
+    @Override
+    public void onBackPressed() {
+        LoginActivity.mActivity.finish();
+        finish();
+    }
 }

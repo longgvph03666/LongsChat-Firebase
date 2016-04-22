@@ -33,16 +33,18 @@
                     android:id="@+id/mt_tvUserName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:textColor="@color/colorAccent"
                     android:text="Tên"
+                    android:textStyle="bold"
                     android:layout_marginTop="10dp"
-                    android:textSize="20sp"/>
+                    android:textSize="17sp"/>
                 <TextView
                     android:id="@+id/mt_tvUserEmail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Email"
                     android:textColor="@color/lightBlue"
-                    android:layout_marginTop="5dp"/>
+                    android:layout_marginTop="4dp"/>
             </LinearLayout>
         </LinearLayout>
 
@@ -51,7 +53,7 @@
             android:layout_height="wrap_content"
             android:background="@color/white"
             android:id="@+id/more_listItem"
-            android:layout_marginTop="12dp"></ListView>
+            android:layout_marginTop="10dp"></ListView>
 
     </LinearLayout>
 
