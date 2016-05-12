@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/Long'sChat-Firebase.iml" filepath="$PROJECT_DIR$/Long'sChat-Firebase.iml" />
+      <module fileurl="file://$PROJECT_DIR$/LongsChat-Firebase.iml" filepath="$PROJECT_DIR$/LongsChat-Firebase.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
     </modules>
   </component>

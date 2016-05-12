@@ -28,7 +28,7 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class LoginActivity extends AppCompatActivity {
-    TextView tvSignUp, tvForget;
+    TextView tvSignUp, tvForget, tvLogo;
     public static EditText etEmail, etPass, etEmailCreate, etPassCreate, etPassConfirm, etResendEmail;
     ScrollView scrollView;
     Button btLogin, btSign, btReset, btResend;
@@ -39,6 +39,7 @@ public class LoginActivity extends AppCompatActivity {
     public static Dialog mDialog2;
     public static SharedPreferences mSharedPreferences;
     public static Activity mActivity;
+    Typeface mTypeface; // Create a font
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -60,10 +61,15 @@ public class LoginActivity extends AppCompatActivity {
         etPass = (EditText) findViewById(R.id.lg_etPass);
         scrollView = (ScrollView) findViewById(R.id.lg_scrollview);
         btLogin = (Button) findViewById(R.id.lg_btLogin);
+        tvLogo = (TextView) findViewById(R.id.tvLogo);
 
+
+        // format texts
         tvForget.setPaintFlags(tvForget.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG); // Gạch chân text
         tvSignUp.setPaintFlags(tvSignUp.getPaintFlags() |   Paint.UNDERLINE_TEXT_FLAG);
         etPass.setTypeface(Typeface.DEFAULT); // Set font chữ về mặc định
+        mTypeface = Typeface.createFromAsset(getAssets(), "I believe in life before death.ttf");
+        tvLogo.setTypeface(mTypeface);
 
     }
 

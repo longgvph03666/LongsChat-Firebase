@@ -17,13 +17,14 @@
         android:orientation="vertical"
         android:layout_weight="1.3">
         <TextView
+            android:id="@+id/tvLogo"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:text="Long's Chat"
             android:gravity="center"
             android:textColor="@color/white"
             android:textSize="45sp"
-            android:textStyle="bold|italic"/>
+            />
     </LinearLayout>
     <ScrollView
         android:layout_width="match_parent"
@@ -44,29 +45,26 @@
                 android:orientation="vertical">
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:hint="Email"
                     android:inputType="textEmailAddress"
                     android:paddingLeft="10dp"
-                    android:layout_weight="1.1"
                     android:textColor="@color/white"
                     android:textColorHint="@color/white2"
                     android:id="@+id/lg_etEmail"/>
                 <EditText
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="60dp"
                     android:hint="Mật khẩu"
                     android:textColorHint="@color/white2"
                     android:paddingLeft="10dp"
                     android:textColor="@color/white"
-                    android:layout_weight="1.1"
                     android:inputType="textPassword"
                     android:id="@+id/lg_etPass"/>
 
                 <Button
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1"
+                    android:layout_height="55dp"
                     android:text="Đăng nhập"
                     android:layout_marginTop="20dp"
                     android:id="@+id/lg_btLogin"

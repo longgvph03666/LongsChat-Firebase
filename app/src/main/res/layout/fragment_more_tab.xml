@@ -11,13 +11,14 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
         <LinearLayout
+            android:layout_marginTop="5dp"
             android:id="@+id/row_user"
             android:layout_width="match_parent"
-            android:layout_height="65dp"
+            android:layout_height="60dp"
             android:orientation="horizontal"
             android:background="@color/white">
             <ImageView
-                android:layout_width="65dp"
+                android:layout_width="60dp"
                 android:layout_height="match_parent"
                 android:src="@drawable/ic_person_black"
                 android:padding="10dp"
@@ -36,7 +37,7 @@
                     android:textColor="@color/colorAccent"
                     android:text="Tên"
                     android:textStyle="bold"
-                    android:layout_marginTop="10dp"
+                    android:layout_marginTop="8dp"
                     android:textSize="17sp"/>
                 <TextView
                     android:id="@+id/mt_tvUserEmail"
