@@ -12,4 +12,5 @@
     <color name="backgroundColor">#f2f2f2</color>
     <color name="black">#000000</color>
     <color name="violet">#9c27b0</color>
+    <color name="red">#f44336</color>
 </resources>

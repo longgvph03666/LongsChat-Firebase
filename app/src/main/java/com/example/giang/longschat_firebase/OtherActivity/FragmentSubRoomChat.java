@@ -1,11 +1,13 @@
 package com.example.giang.longschat_firebase.OtherActivity;
 
 import android.app.Fragment;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
@@ -21,6 +23,9 @@ public class FragmentSubRoomChat extends Fragment {
     View v;
     ImageView imageView;
     String [] title ;
+    //int [] roomID = {11,12,21,22,23,24,25,26,27,28,29,210,31,32,33,34,41,42,43,51,52,53,54,55,61,62};
+    int mPosition;
+    ArrayAdapter adapter;
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -29,9 +34,9 @@ public class FragmentSubRoomChat extends Fragment {
         imageView = (ImageView) v.findViewById(R.id.ivBackRoom);
 
         Bundle extras = getArguments();
-        int position = extras.getInt("position");
+        mPosition = extras.getInt("position");
 
-        switch (position){
+        switch (mPosition){
             case 0:
                 title = new String[]{"Hà Nội", "TP.HCM"};
 
@@ -53,8 +58,19 @@ public class FragmentSubRoomChat extends Fragment {
                 break;
         }
 
-        ArrayAdapter adapter = new ArrayAdapter(getActivity().getApplicationContext(), R.layout.simple_list_item_1, title );
+        adapter = new ArrayAdapter(getActivity(), R.layout.simple_list_item_1, title );
         lv.setAdapter(adapter);
+
+        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent it = new Intent(getActivity(), ChatRoomActivity.class);
+                it.putExtra("room_name", title[position]);
+                String room_id = String.valueOf(mPosition+1) + String.valueOf(position+1);
+                it.putExtra("room_id", room_id);
+                startActivity(it);
+            }
+        });
 
 
         imageView.setOnClickListener(new View.OnClickListener() {
@@ -71,4 +87,6 @@ public class FragmentSubRoomChat extends Fragment {
 
         return v;
     }
+
+
 }

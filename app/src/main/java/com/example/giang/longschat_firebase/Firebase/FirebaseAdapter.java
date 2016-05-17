@@ -3,11 +3,15 @@ package com.example.giang.longschat_firebase.Firebase;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.util.Log;
 import android.widget.Toast;
 
 import com.example.giang.longschat_firebase.MainInterface;
+import com.example.giang.longschat_firebase.Object.MessageChatRoomObject;
+import com.example.giang.longschat_firebase.OtherActivity.AccountManager;
 import com.example.giang.longschat_firebase.OtherActivity.ChangeEmail;
 import com.example.giang.longschat_firebase.OtherActivity.ChangePassword;
+import com.example.giang.longschat_firebase.OtherActivity.ChatRoomActivity;
 import com.example.giang.longschat_firebase.OtherActivity.InfomationActivity;
 import com.example.giang.longschat_firebase.OtherActivity.LoginActivity;
 import com.firebase.client.AuthData;
@@ -16,6 +20,9 @@ import com.firebase.client.DataSnapshot;
 import com.firebase.client.Firebase;
 import com.firebase.client.FirebaseError;
 
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -24,10 +31,10 @@ import java.util.Map;
  */
 public class FirebaseAdapter {
     Context mContext;
-    final static String PATCH = "https://longs-chat.firebaseio.com/";
+    public final static String PATCH = "https://longs-chat.firebaseio.com/";
     public static boolean isLogin;
     Firebase mFirebase;
-    SharedPreferences mSharedPreferences;
+    public static SharedPreferences mSharedPreferences;
     SharedPreferences.Editor editor = LoginActivity.mSharedPreferences.edit();;
 
     public FirebaseAdapter(Context context) {
@@ -154,6 +161,138 @@ public class FirebaseAdapter {
         InfomationActivity.mActivity.finish();
     }
 
+    public void putMessageChatRoom(String mName, String mMessage, String mTime, int mPosition){
+        DateFormat dateFormat = new SimpleDateFormat("yyyyMMddHHmmss");
+        String time = dateFormat.format(new Date());
+
+        Map<String, String> msg = new HashMap<String, String>();
+        msg.put("name", mName);
+        msg.put("message", mMessage);
+        msg.put("time", mTime);
+
+        switch (mPosition){
+            // location
+            case 11:
+                mFirebase.child("chat").child("room").child("location").child("HN").child(time).setValue(msg);
+                break;
+            case 12:
+                mFirebase.child("chat").child("room").child("location").child("TP-HCM").setValue(msg);
+                break;
+            // friends
+            case 21:
+                mFirebase.child("chat").child("room").child("friends").child("KetBanBonPhuong1").setValue(msg);
+                break;
+            case 22:
+                mFirebase.child("chat").child("room").child("friends").child("KetBanBonPhuong2").setValue(msg);
+                break;
+            case 23:
+                mFirebase.child("chat").child("room").child("friends").child("KetBanBonPhuong3").setValue(msg);
+                break;
+            case 24:
+                mFirebase.child("chat").child("room").child("friends").child("KetBanBonPhuong4").setValue(msg);
+                break;
+            case 25:
+                mFirebase.child("chat").child("room").child("friends").child("KetBanBonPhuong5").setValue(msg);
+                break;
+            case 26:
+                mFirebase.child("chat").child("room").child("friends").child("CongVien1").setValue(msg);
+                break;
+            case 27:
+                mFirebase.child("chat").child("room").child("friends").child("CongVien2").setValue(msg);
+                break;
+            case 28:
+                mFirebase.child("chat").child("room").child("friends").child("TheGioiTeen1").setValue(msg);
+                break;
+            case 29:
+                mFirebase.child("chat").child("room").child("friends").child("TheGioiTeen2").setValue(msg);
+                break;
+            case 210:
+                mFirebase.child("chat").child("room").child("friends").child("TheGioiTeen3").setValue(msg);
+                break;
+            // learn
+            case 31:
+                mFirebase.child("chat").child("room").child("learn").child("HoaHocTro").setValue(msg);
+                break;
+            case 32:
+                mFirebase.child("chat").child("room").child("learn").child("SinhVienVN").setValue(msg);
+                break;
+            case 33:
+                mFirebase.child("chat").child("room").child("learn").child("TiengAnh").setValue(msg);
+                break;
+            case 34:
+                mFirebase.child("chat").child("room").child("learn").child("GameHoc").setValue(msg);
+                break;
+            // Entertainment
+            case 41:
+                mFirebase.child("chat").child("room").child("entertainment").child("TanPhetCungThanTuong").setValue(msg);
+                break;
+            case 42:
+                mFirebase.child("chat").child("room").child("entertainment").child("GieoQueTrungOTo").setValue(msg);
+                break;
+            case 43:
+                mFirebase.child("chat").child("room").child("entertainment").child("TanGaiNhanThuong").setValue(msg);
+                break;
+            // Groups
+            case 51:
+                mFirebase.child("chat").child("room").child("groups").child("HoiNguoiCaoTuoiVN").setValue(msg);
+                break;
+            case 52:
+                mFirebase.child("chat").child("room").child("groups").child("HoiTreTrauVN").setValue(msg);
+                break;
+            case 53:
+                mFirebase.child("chat").child("room").child("groups").child("ISGroup").setValue(msg);
+                break;
+            case 54:
+                mFirebase.child("chat").child("room").child("groups").child("HoiAnhHungBanPhimTheGioi").setValue(msg);
+                break;
+            case 55:
+                mFirebase.child("chat").child("room").child("groups").child("HoiLamTinhNguyen").setValue(msg);
+                break;
+            // Other
+            case 61:
+                mFirebase.child("chat").child("room").child("other").child("Boys").setValue(msg);
+                break;
+            case 62:
+                mFirebase.child("chat").child("room").child("other").child("Girls").setValue(msg);
+                break;
+        }
+
+    }
+
+    public void getMessageChatRoom(){
+        mFirebase.child("chat").child("room").child("location").child("HN").addChildEventListener(new ChildEventListener() {
+            @Override
+            public void onChildAdded(DataSnapshot dataSnapshot, String s) {
+                Map<String, String> value = (Map<String, String>) dataSnapshot.getValue();
+                Log.d("Get", "@");
+                ChatRoomActivity.listData.add(new MessageChatRoomObject(value.get("name"), value.get("message"), value.get("time")));
+                ChatRoomActivity.adapter.notifyDataSetChanged();
+                //ChatRoomActivity.lvMessage.setSelection(ChatRoomActivity.listData.size());
+                ChatRoomActivity.lvMessage.smoothScrollToPosition(ChatRoomActivity.listData.size());
+            }
+
+            @Override
+            public void onChildChanged(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onChildRemoved(DataSnapshot dataSnapshot) {
+
+            }
+
+            @Override
+            public void onChildMoved(DataSnapshot dataSnapshot, String s) {
+
+            }
+
+            @Override
+            public void onCancelled(FirebaseError firebaseError) {
+
+            }
+        });
+    }
+
     public void changeEmail(String mOldEmail, String mPassword, final String mNewEmail){
         mFirebase.changeEmail(mOldEmail, mPassword, mNewEmail, new Firebase.ResultHandler() {
             @Override
@@ -209,6 +348,11 @@ public class FirebaseAdapter {
     public void offline(){
         mSharedPreferences = mContext.getSharedPreferences("user", Context.MODE_PRIVATE);
         mFirebase.child("online").child(mSharedPreferences.getString("user_id", "")).setValue("false");
+    }
+
+    public void offlineForLogout(){
+        mSharedPreferences = mContext.getSharedPreferences("user", Context.MODE_PRIVATE);
+        mFirebase.child("online").child(AccountManager.user_id).setValue("false");
     }
 
 }

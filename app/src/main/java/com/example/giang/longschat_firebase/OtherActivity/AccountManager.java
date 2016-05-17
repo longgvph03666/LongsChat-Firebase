@@ -36,6 +36,7 @@ public class AccountManager extends AppCompatActivity {
     SharedPreferences mSharedPreferences;
     FirebaseAdapter mFirebaseAdapter;
     public static AlertDialog.Builder mBuilder;
+    public static String user_id;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,6 +49,9 @@ public class AccountManager extends AppCompatActivity {
         mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         mFirebaseAdapter = new FirebaseAdapter(this);
         mFirebaseAdapter.start();
+
+        // get user_id
+        user_id = mSharedPreferences.getString("user_id", "");
 
         arrl = new ArrayList<MoreObjectItem>();
         for (int i = 0; i < titles.length; i++){
@@ -157,7 +161,7 @@ public class AccountManager extends AppCompatActivity {
     }
 
     public void logout(){
-        mFirebaseAdapter.offline();
+        mFirebaseAdapter.offlineForLogout();
         SharedPreferences mSharedPreferences = getSharedPreferences("user", MODE_PRIVATE);
         mSharedPreferences.edit().clear().commit();
 

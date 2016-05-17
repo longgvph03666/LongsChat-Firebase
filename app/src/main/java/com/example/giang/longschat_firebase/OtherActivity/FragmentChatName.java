@@ -24,7 +24,7 @@ public class FragmentChatName extends Fragment {
     ListView lvChatRoom;
     ChatRoomAdapter adapter;
     ArrayList<ChatRoomObject> arrl;
-    String [] main = {"Thành phố", "Tình yêu - Tình bạn", "Học tập" , "Giải trí" , "Hội nhóm", "Khác"};
+    String [] main = {"Địa điểm", "Tình yêu - Tình bạn", "Học tập" , "Giải trí" , "Hội nhóm", "Khác"};
     String [] sub = {"Theo thành phố, vùng miền ...", "Nơi giao lưu, kết bạn, ...", "Góc học tập mini của bạn", "Nơi thư giãn sau mỗi ngày làm việc mệt nhọc", "Tập hợp các nhóm, phần tử nguy hiểm =))", "Và nhiều hơn thế ..."};
     int [] icon = {R.drawable.ic_place, R.drawable.ic_love, R.drawable.ic_learn, R.drawable.ic_entertainment, R.drawable.ic_group, R.drawable.ic_other};
     @Nullable
